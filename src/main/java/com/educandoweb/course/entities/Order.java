@@ -103,6 +103,13 @@ public class Order implements Serializable{
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+	
+	public Double getTotal() {
+		if (items == null || items.isEmpty()) {
+	        return 0.0;
+	    }
+		return items.stream().mapToDouble(OrderItem::getSubTotal).sum();	
+	}
 
 	@Override
 	public int hashCode() {
